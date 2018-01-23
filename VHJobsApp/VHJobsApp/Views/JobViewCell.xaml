@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          x:Class="VHJobsApp.Views.JobViewCell"
+          xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <BoxView
+            Color="#D6CE0B" Grid.Row="5"
+            Grid.Column="0" Grid.ColumnSpan="5" />
+
+        <Label
+            Text="{Binding JobTitle}"
+            HorizontalOptions="Fill" VerticalOptions="CenterAndExpand"
+            Font="Bold" FontSize="Small"
+            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
+
+        <Label
+            Text="{Binding Description}"
+            FontSize="Small" TextColor="#646464"
+            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"/>
+
+        <Label
+            Text="{Binding Place}"
+            FontSize="Small" TextColor="#646464"
+            Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4"/>
+
+        <Label
+            Text="{Binding SkillsSet}"
+            FontSize="Small" TextColor="#646464"
+            Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="4"/>
+    </Grid>
+</ViewCell>

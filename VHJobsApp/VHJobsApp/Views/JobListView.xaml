@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VHJobsApp.Views.JobListView"
+             xmlns:local="clr-namespace:VHJobsApp.Views"
+             xmlns:helpers="clr-namespace:VHJobsApp.Helpers;assembly=VHJobsApp"
+             xmlns:Controls="clr-namespace:VHJobsApp.ExtendedControls;assembly=VHJobsApp"
+             Title="VanHack Jobs">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Search"
+                     Command="{Binding SearchCommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource"
+                            iOS="search.png"
+                            Android="ic_action_search.png"
+                            WinPhone="Images/feature.search.png" />
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+
+        <ToolbarItem Text="Refresh"
+                     Order="Primary">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource"
+                            iOS="reload.png"
+                            Android="ic_action_refresh.png"
+                            WinPhone="Images/refresh.png" />
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Controls:LazyLoadListView
+                x:Name="ItemsListView"
+                ItemsSource="{Binding Jobs}"
+                LoadCommand="{Binding LoadItemsCommand}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                SelectedItemCommand="{Binding SelectedItemCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <local:JobViewCell/>
+                   </DataTemplate>
+                </ListView.ItemTemplate>
+            </Controls:LazyLoadListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

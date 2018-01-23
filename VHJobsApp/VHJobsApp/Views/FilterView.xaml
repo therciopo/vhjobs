@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:util="clr-namespace:VHJobsApp.Helpers.Extensions"
+             x:Class="VHJobsApp.Views.FilterView"
+             x:Name="filterPage"
+             Title="Filters">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>                    
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Button Text="Apply" Command="{Binding ApplyFilter}" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <Label Text="Only remote Jobs" Margin="30,0,0,0" Grid.Row="1"/>
+                <Switch IsToggled="{Binding IsRemote}" Grid.Column="1" Grid.Row="1"/>
+            </Grid>
+            <ListView  x:Name="GroupedView"
+                       ItemsSource="{Binding Path=Groups}"
+                       GroupDisplayBinding="{Binding Title}"
+                       RowHeight="50"
+                       GroupShortNameBinding="{Binding ShortName}"
+                       IsGroupingEnabled="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout>
+                                    <Label Text="{Binding Name}"/>
+                                </StackLayout>
+                                <Switch IsToggled="{Binding Selected}" Grid.Column="1"/>
+                                <!--<ImageCell Text="{Binding Name}"
+                                   Detail="{Binding Description}"
+                                   Height="50"
+                                   TextColor="#646464"/>-->
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="5,5,5,5" BackgroundColor="#E2F5F9">
+                                <Button Image="{Binding StateIcon}"
+                                        BackgroundColor="Transparent"
+                                        BorderColor="Transparent"
+                                        BorderWidth="0"                                       
+                                        Command="{Binding BindingContext.HeaderTapped, Source={x:Reference filterPage}}"
+                                        CommandParameter="{Binding .}"/>
+                                <Label Text="{Binding Title}" 
+                                       TextColor="#005569"
+                                       FontSize="15"
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

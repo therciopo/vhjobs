@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VHJobsApp.Views.JobSearchView"
+             xmlns:local="clr-namespace:VHJobsApp.Views"
+             xmlns:helpers="clr-namespace:VHJobsApp.Helpers;assembly=VHJobsApp"
+             xmlns:Controls="clr-namespace:VHJobsApp.ExtendedControls;assembly=VHJobsApp"
+             Title="Search Jobs">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Filter"
+                     Command="{Binding FilterCommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource"
+                            iOS="search.png"
+                            Android="ic_filter_list_black_24dp.png"
+                            WinPhone="Images/feature.search.png" />
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <SearchBar x:Name="MySearchBar"
+                       Text="{Binding SearchText}"
+                       SearchCommand="{Binding SearchCommand}"                       
+                       Placeholder="Type a skill or a keyword"
+                       PlaceholderColor="Black"
+                       CancelButtonColor="Gray" />
+
+            <Controls:LazyLoadListView
+                x:Name="ItemsListView"
+                ItemsSource="{Binding Jobs}"
+                LoadCommand="{Binding LoadCommand}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                SelectedItemCommand="{Binding SelectedItemCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <local:JobViewCell/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </Controls:LazyLoadListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

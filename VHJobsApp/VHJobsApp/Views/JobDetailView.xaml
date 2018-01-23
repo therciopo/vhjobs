@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:VHJobsApp.Helpers;assembly=VHJobsApp"
+             x:Class="VHJobsApp.Views.JobDetailView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             Title="{Binding Title}">
+
+    <ContentPage.Resources>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15">
+            <Grid RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+                <!--<ffimageloading:CachedImage
+                    BackgroundColor="Gray"
+                    Aspect="AspectFill"
+                    DownsampleToViewSize="true"
+                    Source="{Binding BackDropImage}"
+                    Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
+                </ffimageloading:CachedImage>-->
+
+                <Label Text="{Binding JobTitle}"
+                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                   FontSize="Large"/>
+
+                <Label Text="Skills"
+                       Font="Bold" FontSize="Large"
+                       Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+                <Label Text="{Binding SkillsSet}"
+                   Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4"
+                   FontSize="Small" TextColor="#646464"/>
+
+                <Label Text="{Binding Description}"
+                   Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4"
+                   FontSize="Small"/>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
